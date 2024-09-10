@@ -1,40 +1,39 @@
-services:
-
-  postgres:
-    image: 'postgres:16.4'
-    container_name: postgres_football_records
-    networks:
-      - football_api_postgres
-    environment:
-      - 'POSTGRES_DB=FootballRecordsDB'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=User'
-    ports:
-      - '5432:5432'
-    volumes:
-      - postgres-data-football-records:/var/lib/postgresql/data
-
-  application:
-    image: football_api:latest
-    build:
-      #      dockerfile: Dockerfile
-      context: .
-    restart: "no"
-    container_name: application
-    ports:
-      - 8080:8080
-    networks:
-      - football_api_postgres
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/FootballRecordsDB
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - SPRING_DATASOURCE_USERNAME=User
-      - SPRING_DATASOURCE_PASSWORD=secret
-    depends_on:
-      - postgres
-
-networks:
-  football_api_postgres:
-
-volumes:
-  postgres-data-football-records:
+#services:
+#
+#  postgres:
+#    image: 'postgres:16.4'
+#    container_name: postgres_football_records
+#    networks:
+#      - football_api_postgres
+#    environment:
+#      - 'POSTGRES_DB=FootballRecordsDB'
+#      - 'POSTGRES_PASSWORD=secret'
+#      - 'POSTGRES_USER=User'
+#    ports:
+#      - '5432:5432'
+#    volumes:
+#      - postgres-data-football-records:/var/lib/postgresql/data
+#
+#  application:
+#    image: football_api:latest
+#    build:
+#      context: .
+#    restart: "no"
+#    container_name: application
+#    ports:
+#      - 8080:8080
+#    networks:
+#      - football_api_postgres
+#    environment:
+#      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/FootballRecordsDB
+#      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+#      - SPRING_DATASOURCE_USERNAME=User
+#      - SPRING_DATASOURCE_PASSWORD=secret
+#    depends_on:
+#      - postgres
+#
+#networks:
+#  football_api_postgres:
+#
+#volumes:
+#  postgres-data-football-records:
