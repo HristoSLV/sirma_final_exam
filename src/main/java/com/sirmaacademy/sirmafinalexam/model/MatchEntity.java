@@ -25,8 +25,6 @@ public class MatchEntity {
     private LocalDate date;
     @Size(min = 1, max = 64, message = "Size must be between 1 and 64")
     private String score;
-//    private Integer firstTeamPenaltyKickScore;
-//    private Integer secondTeamPenaltyKickScore;
 
     public MatchEntity(Long firstTeamId, Long secondTeamId, LocalDate date, String score) {
         this.firstTeamId = firstTeamId;
