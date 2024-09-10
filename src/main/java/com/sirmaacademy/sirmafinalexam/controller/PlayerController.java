@@ -3,6 +3,7 @@ package com.sirmaacademy.sirmafinalexam.controller;
 import com.sirmaacademy.sirmafinalexam.model.MatchEntity;
 import com.sirmaacademy.sirmafinalexam.model.PlayerEntity;
 import com.sirmaacademy.sirmafinalexam.service.PlayerService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +31,7 @@ public class PlayerController {
     }
 
     @PostMapping("/new")
-    public ResponseEntity<PlayerEntity> addNewPlayer(@RequestBody PlayerEntity playerEntity) {
+    public ResponseEntity<PlayerEntity> addNewPlayer(@RequestBody @Valid PlayerEntity playerEntity) {
         PlayerEntity player = playerService.addNewPlayer(playerEntity);
         return ResponseEntity.ok(player);
     }
@@ -42,7 +43,7 @@ public class PlayerController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<PlayerEntity> updatePlayer(@PathVariable Long id, @RequestBody PlayerEntity playerEntity) {
+    public ResponseEntity<PlayerEntity> updatePlayer(@PathVariable Long id, @RequestBody @Valid PlayerEntity playerEntity) {
         PlayerEntity updatedPlayer = playerService.updatePlayer(id, playerEntity);
         return ResponseEntity.ok(updatedPlayer);
     }

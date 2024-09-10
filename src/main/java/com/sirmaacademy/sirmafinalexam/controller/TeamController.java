@@ -2,6 +2,7 @@ package com.sirmaacademy.sirmafinalexam.controller;
 
 import com.sirmaacademy.sirmafinalexam.model.TeamEntity;
 import com.sirmaacademy.sirmafinalexam.service.TeamService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +31,7 @@ public class TeamController {
     }
 
     @PostMapping("/new")
-    public ResponseEntity<TeamEntity> addNewTeam(@RequestBody TeamEntity teamEntity) {
+    public ResponseEntity<TeamEntity> addNewTeam(@RequestBody @Valid TeamEntity teamEntity) {
         TeamEntity team = teamService.addNewTeam(teamEntity);
         return ResponseEntity.ok(team);
     }
@@ -42,7 +43,7 @@ public class TeamController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<TeamEntity> updatePlayer(@PathVariable Long id, @RequestBody TeamEntity teamEntity) {
+    public ResponseEntity<TeamEntity> updatePlayer(@PathVariable Long id, @RequestBody @Valid TeamEntity teamEntity) {
         TeamEntity updatedTeam = teamService.updateTeam(id, teamEntity);
         return ResponseEntity.ok(updatedTeam);
     }

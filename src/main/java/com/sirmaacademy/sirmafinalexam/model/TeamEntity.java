@@ -1,6 +1,7 @@
 package com.sirmaacademy.sirmafinalexam.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,9 +14,11 @@ public class TeamEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-
+    @Size(min = 1, max = 64, message = "Size must be between 1 and 64")
     private String teamName;
+    @Size(min = 1, max = 64, message = "Size must be between 1 and 64")
     private String managerName;
+    @Size(min = 1, max = 64, message = "Size must be between 1 and 64")
     private String teamGroup;
 
     public TeamEntity(String teamName, String managerName, String teamGroup) {
