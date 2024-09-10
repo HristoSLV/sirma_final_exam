@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "/matches")
+@Table(name = "matches")
 public class MatchEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,15 +21,13 @@ public class MatchEntity {
     private Long secondTeamId;
     private LocalDate date;
     private String score;
-    private Integer firstTeamPenaltyKickScore;
-    private Integer secondTeamPenaltyKickScore;
+//    private Integer firstTeamPenaltyKickScore;
+//    private Integer secondTeamPenaltyKickScore;
 
-    public MatchEntity(Long firstTeamId, Long secondTeamId, LocalDate date, String score, Integer firstTeamPenaltyKickScore, Integer secondTeamPenaltyKickScore) {
+    public MatchEntity(Long firstTeamId, Long secondTeamId, LocalDate date, String score) {
         this.firstTeamId = firstTeamId;
         this.secondTeamId = secondTeamId;
         this.date = date;
         this.score = score;
-        this.firstTeamPenaltyKickScore = firstTeamPenaltyKickScore;
-        this.secondTeamPenaltyKickScore = secondTeamPenaltyKickScore;
     }
 }

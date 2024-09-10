@@ -1,6 +1,8 @@
 package com.sirmaacademy.sirmafinalexam.controller;
 
 import com.sirmaacademy.sirmafinalexam.service.CsvImportService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,7 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class CsvController {
     private CsvImportService csvImportService;
 
-    public CsvController(CsvImportService csvImportService) {
-        this.csvImportService = csvImportService;
+    @PostMapping("/teams")
+    public ResponseEntity<String> importOrResetDatabase() {
+        try {
+            csvImportService.importTeams();
+            return ResponseEntity.ok("Team DB has been reset!");
+        } catch (Exception e) {
+            throw new RuntimeException("Could not reset DB");
+        }
     }
 }

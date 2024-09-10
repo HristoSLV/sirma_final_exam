@@ -17,6 +17,7 @@ import java.io.IOException;
 
 
 import static com.sirmaacademy.sirmafinalexam.util.DateTimeFormatterUtil.parseDateFromAllFormats;
+import static com.sirmaacademy.sirmafinalexam.util.RecordTimeParser.toMinutesParser;
 
 @Service
 public class CsvImportService {
@@ -90,13 +91,12 @@ public class CsvImportService {
 
             while ((line = bufferedReader.readLine()) != null) {
                 String[] fields = line.split(",");
+
                 MatchEntity matchEntity = new MatchEntity(
                         Long.parseLong(fields[1].trim()),
                         Long.parseLong(fields[2].trim()),
                         parseDateFromAllFormats(fields[3].trim()),
-                        fields[4],
-                        Integer.parseInt(fields[5].trim()),
-                        Integer.parseInt(fields[6].trim())
+                        fields[4]
                 );
                 matchRepository.save(matchEntity);
             }
@@ -118,7 +118,7 @@ public class CsvImportService {
                         Long.parseLong(fields[1].trim()),
                         Long.parseLong(fields[2].trim()),
                         Integer.parseInt(fields[3].trim()),
-                        Integer.parseInt(fields[4].trim())
+                        toMinutesParser(fields[4].trim())
                 );
                 recordRepository.save(recordEntity);
             }

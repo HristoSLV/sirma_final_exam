@@ -7,9 +7,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(name = "/records")
+@Table(name = "records")
 public class RecordEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,10 +18,22 @@ public class RecordEntity {
     private Integer fromMinutes;
     private Integer toMinutes;
 
+    public RecordEntity() {
+        if (this.toMinutes == null) {
+            this.toMinutes = 90;
+        }
+    }
+
     public RecordEntity(Long playerId, Long matchId, Integer fromMinutes, Integer toMinutes) {
         this.playerId = playerId;
         this.matchId = matchId;
         this.fromMinutes = fromMinutes;
-        this.toMinutes = toMinutes;
+        if (this.toMinutes == null) {
+            this.toMinutes = 90;
+        } else {
+            this.toMinutes = toMinutes;
+        }
     }
+
+
 }
