@@ -1,6 +1,5 @@
 package com.sirmaacademy.sirmafinalexam.controller;
 
-import com.sirmaacademy.sirmafinalexam.model.MatchEntity;
 import com.sirmaacademy.sirmafinalexam.model.PlayerEntity;
 import com.sirmaacademy.sirmafinalexam.service.PlayerService;
 import jakarta.validation.Valid;
@@ -32,12 +31,8 @@ public class PlayerController {
 
     @PostMapping("/new")
     public ResponseEntity<PlayerEntity> addNewPlayer(@RequestBody @Valid PlayerEntity playerEntity) {
-        try {
-            PlayerEntity player = playerService.addNewPlayer(playerEntity);
-            return ResponseEntity.ok(player);
-        } catch (RuntimeException e) {
-            throw new RuntimeException("Invalid data: Data does not match Entity Model");
-        }
+        PlayerEntity player = playerService.addNewPlayer(playerEntity);
+        return ResponseEntity.ok(player);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -48,11 +43,7 @@ public class PlayerController {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<PlayerEntity> updatePlayer(@PathVariable Long id, @RequestBody @Valid PlayerEntity playerEntity) {
-        try {
-            PlayerEntity updatedPlayer = playerService.updatePlayer(id, playerEntity);
-            return ResponseEntity.ok(updatedPlayer);
-        } catch (RuntimeException e) {
-            throw new RuntimeException("Invalid data: Data does not match Entity Model");
-        }
+        PlayerEntity updatedPlayer = playerService.updatePlayer(id, playerEntity);
+        return ResponseEntity.ok(updatedPlayer);
     }
 }

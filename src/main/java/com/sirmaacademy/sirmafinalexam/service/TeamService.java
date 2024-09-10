@@ -1,6 +1,5 @@
 package com.sirmaacademy.sirmafinalexam.service;
 
-import com.sirmaacademy.sirmafinalexam.model.PlayerEntity;
 import com.sirmaacademy.sirmafinalexam.model.TeamEntity;
 import com.sirmaacademy.sirmafinalexam.repository.TeamRepository;
 import org.springframework.stereotype.Service;

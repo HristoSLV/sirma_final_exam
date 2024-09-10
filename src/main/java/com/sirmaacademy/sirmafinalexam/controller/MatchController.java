@@ -32,12 +32,8 @@ public class MatchController {
 
     @PostMapping("/new")
     public ResponseEntity<MatchEntity> addNewMatch(@RequestBody @Valid MatchEntity matchEntity) {
-        try {
-            MatchEntity match = matchService.addMatch(matchEntity);
-            return ResponseEntity.ok(match);
-        } catch (RuntimeException e) {
-            throw new RuntimeException("Invalid data: Data does not match Entity Model");
-        }
+         MatchEntity match = matchService.addMatch(matchEntity);
+         return ResponseEntity.ok(match);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -48,11 +44,7 @@ public class MatchController {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<MatchEntity> updateMatch(@PathVariable Long id, @RequestBody @Valid MatchEntity matchEntity) {
-        try {
-            MatchEntity match = matchService.updateMatch(id, matchEntity);
-            return ResponseEntity.ok(match);
-        } catch (RuntimeException e) {
-            throw new RuntimeException("Invalid data: Data does not match Entity Model");
-        }
+        MatchEntity match = matchService.updateMatch(id, matchEntity);
+        return ResponseEntity.ok(match);
     }
 }
