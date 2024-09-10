@@ -32,8 +32,12 @@ public class TeamController {
 
     @PostMapping("/new")
     public ResponseEntity<TeamEntity> addNewTeam(@RequestBody @Valid TeamEntity teamEntity) {
-        TeamEntity team = teamService.addNewTeam(teamEntity);
-        return ResponseEntity.ok(team);
+        try {
+            TeamEntity team = teamService.addNewTeam(teamEntity);
+            return ResponseEntity.ok(team);
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Invalid data: Data does not match Entity Model");
+        }
     }
 
     @DeleteMapping("/delete/{id}")
@@ -44,7 +48,11 @@ public class TeamController {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<TeamEntity> updatePlayer(@PathVariable Long id, @RequestBody @Valid TeamEntity teamEntity) {
-        TeamEntity updatedTeam = teamService.updateTeam(id, teamEntity);
-        return ResponseEntity.ok(updatedTeam);
+        try {
+            TeamEntity updatedTeam = teamService.updateTeam(id, teamEntity);
+            return ResponseEntity.ok(updatedTeam);
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Invalid data: Data does not match Entity Model");
+        }
     }
 }
