@@ -1,7 +1,7 @@
 package com.sirmaacademy.sirmafinalexam.repository;
 
-import com.sirmaacademy.sirmafinalexam.model.Team;
+import com.sirmaacademy.sirmafinalexam.model.TeamEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TeamRepository extends JpaRepository<Team, Long> {
+public interface TeamRepository extends JpaRepository<TeamEntity, Long> {
 }

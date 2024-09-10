@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "/teams")
-public class Team {
+public class TeamEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -18,4 +18,10 @@ public class Team {
     private String name;
     private String managerFullName;
     private String group;
+
+    public TeamEntity(String name, String managerFullName, String group) {
+        this.name = name;
+        this.managerFullName = managerFullName;
+        this.group = group;
+    }
 }

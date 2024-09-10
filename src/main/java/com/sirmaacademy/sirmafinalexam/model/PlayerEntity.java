@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "/players")
-public class Player {
+public class PlayerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -20,4 +20,10 @@ public class Player {
     private String fullName;
     private Long teamId;
 
+    public PlayerEntity(Integer playerNumber, String position, String fullName, Long teamId) {
+        this.playerNumber = playerNumber;
+        this.position = position;
+        this.fullName = fullName;
+        this.teamId = teamId;
+    }
 }

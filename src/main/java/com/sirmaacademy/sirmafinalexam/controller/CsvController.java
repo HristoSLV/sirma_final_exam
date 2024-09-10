@@ -1,15 +1,15 @@
 package com.sirmaacademy.sirmafinalexam.controller;
 
-import com.sirmaacademy.sirmafinalexam.service.CsvService;
+import com.sirmaacademy.sirmafinalexam.service.CsvImportService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/csv-filler")
 public class CsvController {
-    private CsvService csvService;
+    private CsvImportService csvImportService;
 
-    public CsvController(CsvService csvService) {
-        this.csvService = csvService;
+    public CsvController(CsvImportService csvImportService) {
+        this.csvImportService = csvImportService;
     }
 }
