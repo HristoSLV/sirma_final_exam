@@ -65,7 +65,7 @@ public class PlayerPairService {
     }
 
     private PlayerPairWithTime findPairWithHighestOverlapInTeam(List<PlayerEntity> playerEntities, List<RecordEntity> recordEntities) {
-        Map<PlayerPair, Long> playerPairTimeMap = new HashMap<>();
+        Map<PlayerPair, Long> playerPairMap = new HashMap<>();
 
         Map<Long, List<RecordEntity>> recordsByPlayer = recordEntities.stream()
                 .collect(Collectors.groupingBy(RecordEntity::getPlayerId));
@@ -81,11 +81,11 @@ public class PlayerPairService {
                 Long totalOverlappedMinutes = totalOverlappedTimeWithMatches(recordsOne, recordsTwo);
 
                 PlayerPair pair = new PlayerPair(playerOne.getId(), playerTwo.getId());
-                playerPairTimeMap.put(pair, totalOverlappedMinutes);
+                playerPairMap.put(pair, totalOverlappedMinutes);
             }
         }
 
-        return playerPairTimeMap.entrySet().stream()
+        return playerPairMap.entrySet().stream()
                 .max(Map.Entry.comparingByValue())
                 .map(entry -> new PlayerPairWithTime(entry.getKey().getPlayerOneId(), entry.getKey().getPlayerTwoId(),
                         entry.getValue()))
