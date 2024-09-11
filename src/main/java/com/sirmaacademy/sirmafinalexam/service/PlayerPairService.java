@@ -22,7 +22,25 @@ public class PlayerPairService {
         this.recordRepository = recordRepository;
     }
 
-    public List<PlayerPairWithTime> playerPair() {
+    public PlayerPairWithTime playerPairWithHighestOverlap() {
+        List<PlayerPairWithTime> playerPairWithTimeList = playerPairs();
+        PlayerPairWithTime mostOverlappingPair = new PlayerPairWithTime();
+        long biggestOverlapInMinutes = 0;
+
+        for (var playerPair: playerPairWithTimeList) {
+            if (playerPair.getTotalOverlappedMinutes() > biggestOverlapInMinutes) {
+                mostOverlappingPair.setPlayerOneId(playerPair.getPlayerOneId());
+                mostOverlappingPair.setPlayerTwoId(playerPair.getPlayerTwoId());
+                mostOverlappingPair.setTotalOverlappedMinutes(playerPair.getTotalOverlappedMinutes());
+                biggestOverlapInMinutes = playerPair.getTotalOverlappedMinutes();
+            }
+        }
+
+
+        return mostOverlappingPair;
+    }
+
+    public List<PlayerPairWithTime> playerPairs() {
         List<PlayerPairWithTime> playerPairWithTimeList = new ArrayList<>();
         List<RecordEntity> records = recordRepository.findAll();
         List<PlayerEntity> players = playerRepository.findAll();

@@ -18,8 +18,13 @@ public class PlayerPairController {
         this.playerPairService = playerPairService;
     }
 
-    @GetMapping
-    public List<PlayerPairWithTime> getPlayerPairWithBiggestOverlap() {
-        return playerPairService.playerPair();
+    @GetMapping("/all-pairs")
+    public List<PlayerPairWithTime> getTheMostOverlappedPairInEachTeam() {
+        return playerPairService.playerPairs();
+    }
+
+    @GetMapping("/highest-pair")
+    public PlayerPairWithTime getPlayerPairWithBiggestOverlap() {
+        return playerPairService.playerPairWithHighestOverlap();
     }
 }
