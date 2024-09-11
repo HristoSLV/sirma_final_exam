@@ -57,7 +57,6 @@ public class PlayerPairService {
             if (pairWithHighestOverlap != null) {
                 playerPairWithTimeList.add(pairWithHighestOverlap);
             }
-
         }
         return playerPairWithTimeList;
     }
@@ -82,7 +81,6 @@ public class PlayerPairService {
                 playerPairMap.put(pair, totalOverlappedMinutes);
             }
         }
-
         return playerPairMap.entrySet().stream()
                 .max(Map.Entry.comparingByValue())
                 .map(entry -> new PlayerPairWithTime(entry.getKey().getPlayerOneId(), entry.getKey().getPlayerTwoId(),
