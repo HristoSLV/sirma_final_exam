@@ -13,7 +13,7 @@ import java.util.Optional;
 @RequestMapping("/matches")
 public class MatchController {
 
-    private MatchService matchService;
+    private final MatchService matchService;
 
     public MatchController(MatchService matchService) {
         this.matchService = matchService;

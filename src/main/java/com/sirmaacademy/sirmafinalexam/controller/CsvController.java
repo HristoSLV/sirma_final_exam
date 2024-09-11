@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/csv-filler")
 public class CsvController {
-    private CsvImportService csvImportService;
+    private final CsvImportService csvImportService;
 
     public CsvController(CsvImportService csvImportService) {
         this.csvImportService = csvImportService;
     }
 
-    @PostMapping("/teams")
-    public ResponseEntity<String> importOrResetDatabase() {
-        try {
-            csvImportService.fillOrResetDB();
-            return ResponseEntity.ok("Team DB has been reset!");
-        } catch (Exception e) {
-            throw new RuntimeException("Could not reset DB");
-        }
-    }
+//    @PostMapping("/teams")
+//    public ResponseEntity<String> importOrResetDatabase() {
+//        try {
+//            csvImportService.fillOrResetDB();
+//            return ResponseEntity.ok("Team DB has been reset!");
+//        } catch (Exception e) {
+//            throw new RuntimeException("Could not reset DB");
+//        }
+//    }
 }
