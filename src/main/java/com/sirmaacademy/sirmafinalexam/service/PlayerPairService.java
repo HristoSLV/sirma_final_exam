@@ -97,7 +97,7 @@ public class PlayerPairService {
 
         for (var recordOne : recordsPlayerOne) {
             for (var recordTwo : recordsPlayerTwo) {
-                int overlapDuration = 0;
+                int overlapDuration;
                 if (recordTwo.getFromMinutes() > recordOne.getFromMinutes()) {
                     if (recordOne.getToMinutes() > recordTwo.getToMinutes()) {
                         overlapDuration = recordTwo.getToMinutes() - recordTwo.getFromMinutes();
