@@ -35,8 +35,6 @@ public class PlayerPairService {
                 biggestOverlapInMinutes = playerPair.getTotalOverlappedMinutes();
             }
         }
-
-
         return mostOverlappingPair;
     }
 
