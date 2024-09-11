@@ -20,7 +20,7 @@ public class PlayerPairController {
 
     @GetMapping("/all-pairs")
     public List<PlayerPairWithTime> getTheMostOverlappedPairInEachTeam() {
-        return playerPairService.playerPairs();
+        return playerPairService.playerPairsWithBiggestOverlapInEachTeam();
     }
 
     @GetMapping("/highest-pair")

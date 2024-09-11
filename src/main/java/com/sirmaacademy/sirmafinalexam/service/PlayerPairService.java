@@ -23,7 +23,7 @@ public class PlayerPairService {
     }
 
     public PlayerPairWithTime playerPairWithHighestOverlap() {
-        List<PlayerPairWithTime> playerPairWithTimeList = playerPairs();
+        List<PlayerPairWithTime> playerPairWithTimeList = playerPairsWithBiggestOverlapInEachTeam();
         PlayerPairWithTime mostOverlappingPair = new PlayerPairWithTime();
         long biggestOverlapInMinutes = 0;
 
@@ -40,7 +40,7 @@ public class PlayerPairService {
         return mostOverlappingPair;
     }
 
-    public List<PlayerPairWithTime> playerPairs() {
+    public List<PlayerPairWithTime> playerPairsWithBiggestOverlapInEachTeam() {
         List<PlayerPairWithTime> playerPairWithTimeList = new ArrayList<>();
         List<RecordEntity> records = recordRepository.findAll();
         List<PlayerEntity> players = playerRepository.findAll();
@@ -49,14 +49,13 @@ public class PlayerPairService {
                 .collect(Collectors.groupingBy(PlayerEntity::getTeamId));
 
         for (var entry : playersGroupedByTeam.entrySet()) {
-             //Long teamId = entry.getKey();
              List<PlayerEntity> playersInATeam = entry.getValue();
 
             Set<Long> playerIds = playersInATeam.stream().map(PlayerEntity::getId).collect(Collectors.toSet());
             List<RecordEntity> teamRecords = records.stream()
                     .filter(record -> playerIds.contains(record.getPlayerId())).toList();
 
-            PlayerPairWithTime pairWithHighestOverlap = findPairWithHighestOverlap(playersInATeam, teamRecords);
+            PlayerPairWithTime pairWithHighestOverlap = findPairWithHighestOverlapInTeam(playersInATeam, teamRecords);
             if (pairWithHighestOverlap != null) {
                 playerPairWithTimeList.add(pairWithHighestOverlap);
             }
@@ -65,7 +64,7 @@ public class PlayerPairService {
         return playerPairWithTimeList;
     }
 
-    private PlayerPairWithTime findPairWithHighestOverlap(List<PlayerEntity> playerEntities, List<RecordEntity> recordEntities) {
+    private PlayerPairWithTime findPairWithHighestOverlapInTeam(List<PlayerEntity> playerEntities, List<RecordEntity> recordEntities) {
         Map<PlayerPair, Long> playerPairTimeMap = new HashMap<>();
 
         Map<Long, List<RecordEntity>> recordsByPlayer = recordEntities.stream()
