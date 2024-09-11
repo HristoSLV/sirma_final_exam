@@ -130,5 +130,16 @@ public class CsvImportService {
         }
     }
 
+    public void fillOrResetDB() {
+        playerRepository.deleteAll();
+        teamRepository.deleteAll();
+        matchRepository.deleteAll();
+        recordRepository.deleteAll();
+        importPlayers();
+        importTeams();
+        importMatches();
+        importRecords();
+    }
+
 
 }
