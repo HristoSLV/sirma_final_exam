@@ -30,4 +30,13 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>("Invalid data: The provided value types do not match the entity model", HttpStatus.BAD_REQUEST);
     }
 
+//    @ExceptionHandler(MethodArgumentNotValidException.class)
+//    public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
+//        Map<String, String> errors = new HashMap<>();
+//        ex.getFieldErrors().forEach((error) -> {
+//            errors.put(error.getField(), error.getDefaultMessage());
+//        });
+//        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+//    }
+
 }

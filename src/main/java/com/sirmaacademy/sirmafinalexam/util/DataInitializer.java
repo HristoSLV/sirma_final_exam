@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
-    private TeamRepository teamRepository;
-    private PlayerRepository playerRepository;
-    private MatchRepository matchRepository;
-    private RecordRepository recordRepository;
-    private CsvImportService csvImportService;
+    private final TeamRepository teamRepository;
+    private final PlayerRepository playerRepository;
+    private final MatchRepository matchRepository;
+    private final RecordRepository recordRepository;
+    private final CsvImportService csvImportService;
 
     public DataInitializer(TeamRepository teamRepository, PlayerRepository playerRepository, MatchRepository matchRepository, RecordRepository recordRepository, CsvImportService csvImportService) {
         this.teamRepository = teamRepository;
