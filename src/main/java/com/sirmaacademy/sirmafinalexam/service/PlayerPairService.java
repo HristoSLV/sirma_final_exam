@@ -45,10 +45,10 @@ public class PlayerPairService {
         List<RecordEntity> records = recordRepository.findAll();
         List<PlayerEntity> players = playerRepository.findAll();
 
-        Map<Long, List<PlayerEntity>> playersGroupedByTeam = players.stream()
+        Map<Long, List<PlayerEntity>> playerPairsByTeam = players.stream()
                 .collect(Collectors.groupingBy(PlayerEntity::getTeamId));
 
-        for (var entry : playersGroupedByTeam.entrySet()) {
+        for (var entry : playerPairsByTeam.entrySet()) {
              List<PlayerEntity> playersInATeam = entry.getValue();
 
             Set<Long> playerIds = playersInATeam.stream().map(PlayerEntity::getId).collect(Collectors.toSet());
